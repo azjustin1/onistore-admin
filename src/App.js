@@ -1,17 +1,30 @@
-import * as React from "react";
-
-import { Admin, Resource, ListGuesser } from "react-admin";
 import jsonServerProvider from "ra-data-json-server";
+import * as React from "react";
+import { Admin, Resource, Authenticated } from "react-admin";
+import authProvider from "./auth/authProvider";
+import { UserCreate } from "./pages/users/UserCreate";
+import { UserEdit } from "./pages/users/UserEdit";
+import { UserList } from "./pages/users/UserList";
+import { ProductList } from "./pages/products/ProductList";
 
-import { UserList } from "./pages/users";
-import { authProvider } from "./auth/auth";
+let dataProvider = jsonServerProvider("http://localhost:3000");
 
-const dataProvider = jsonServerProvider("http://localhost:9000");
-
-const App = () => (
-	<Admin dataProvider={dataProvider}>
-		<Resource name="users" list={UserList} />
-	</Admin>
-);
+const App = () => {
+	return (
+		<Admin dataProvider={dataProvider}>
+			<Resource
+				name="users"
+				list={UserList}
+				create={UserCreate}
+				edit={UserEdit}
+			/>
+			<Resource
+				dataProvider={dataProvider}
+				name="products"
+				list={ProductList}
+			/>
+		</Admin>
+	);
+};
 
 export default App;
