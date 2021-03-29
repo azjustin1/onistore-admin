@@ -1,7 +1,7 @@
-export default {
-	// authentication
+import inMemoryJWT from "./inMemoryJWT";
+
+const authProvider = {
 	login: ({ username, password }) => {
-		console.log({ username, password });
 		const request = new Request("http://localhost:3000/signin", {
 			method: "POST",
 			body: JSON.stringify({ username, password }),
@@ -22,31 +22,26 @@ export default {
 			});
 	},
 	logout: () => {
-		localStorage.setItem("not_authenticated", true);
-		localStorage.removeItem("role");
-		localStorage.removeItem("login");
-		localStorage.removeItem("user");
+		localStorage.removeItem("auth");
 		return Promise.resolve();
 	},
-	checkError: ({ status }) => {
-		return status === 401 || status === 403
-			? Promise.reject()
-			: Promise.resolve();
-	},
+
 	checkAuth: () => {
-		return localStorage.getItem("not_authenticated")
-			? Promise.reject()
-			: Promise.resolve();
+		return localStorage.getItem("auth") ? Promise.resolve() : Promise.reject();
 	},
+
+	checkError: (error) => {
+		const status = error.status;
+		if (status === 401 || status === 403) {
+			localStorage.removeItem("auth");
+			return Promise.reject();
+		}
+		return Promise.resolve();
+	},
+
 	getPermissions: () => {
-		const role = localStorage.getItem("role");
-		return Promise.resolve(role);
-	},
-	getIdentity: () => {
-		return {
-			id: localStorage.getItem("login"),
-			fullName: localStorage.getItem("user"),
-			avatar: localStorage.getItem("avatar"),
-		};
+		return inMemoryJWT.getToken() ? Promise.resolve() : Promise.reject();
 	},
 };
+
+export default authProvider;

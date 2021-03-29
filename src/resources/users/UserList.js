@@ -1,13 +1,6 @@
 // in src/users.js
 import * as React from "react";
-import {
-	List,
-	Datagrid,
-	TextField,
-	EmailField,
-	EditButton,
-	DeleteButton,
-} from "react-admin";
+import { Datagrid, List, TextField } from "react-admin";
 
 export const UserList = (props) => (
 	<List {...props}>
