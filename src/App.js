@@ -1,32 +1,39 @@
-import jsonServerProvider from "ra-data-json-server";
 import * as React from "react";
-import { Admin, fetchUtils, Resource } from "react-admin";
+import { Admin, fetchUtils, ListGuesser, Resource } from "react-admin";
 import authProvider from "./auth/authProvider";
+import Dashboard from "./Dashboard";
 import { ProductEdit } from "./resources/products/ProductEdit";
 import { ProductList } from "./resources/products/ProductList";
 import { ProductShow } from "./resources/products/ProductShow";
+import StorageIcon from "@material-ui/icons/Storage";
+import jsonServerProvider from "ra-data-json-server";
+import dataProvider from "./data/dataProvider";
 
-const httpClient = (url, options = {}) => {
-	if (!options.headers) {
-		options.headers = new Headers({ Accept: "application/json" });
-	}
-	const { token } = JSON.parse(localStorage.getItem("auth"));
-	options.headers.set("Authorization", `Bearer ${token}`);
-	return fetchUtils.fetchJson(url, options);
-};
+// const httpClient = (url, options = {}) => {
+// 	if (!options.headers) {
+// 		options.headers = new Headers({ Accept: "application/json" });
+// 	}
+// 	const { token } = JSON.parse(localStorage.getItem("auth"));
+// 	options.headers.set("Authorization", `Bearer ${token}`);
+// 	return fetchUtils.fetchJson(url, options);
+// };
 
-let dataProvider = jsonServerProvider("http://localhost:3000", httpClient);
+// let dataProvider = jsonServerProvider("http://localhost:8000/api", httpClient);
 
 const App = () => {
 	return (
-		<Admin dataProvider={dataProvider} authProvider={authProvider}>
+		<Admin
+			dashboard={Dashboard}
+			dataProvider={dataProvider}
+			authProvider={authProvider}>
 			<Resource
-				dataProvider={dataProvider}
 				name="products"
 				list={ProductList}
 				show={ProductShow}
 				edit={ProductEdit}
+				icon={StorageIcon}
 			/>
+			<Resource name="categories" list={ListGuesser} />
 		</Admin>
 	);
 };

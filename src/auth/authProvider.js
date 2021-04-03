@@ -2,7 +2,7 @@ import inMemoryJWT from "./inMemoryJWT";
 
 const authProvider = {
 	login: ({ username, password }) => {
-		const request = new Request("http://localhost:3000/signin", {
+		const request = new Request("http://localhost:8000/api/signin", {
 			method: "POST",
 			body: JSON.stringify({ username, password }),
 			headers: new Headers({ "Content-Type": "application/json" }),
