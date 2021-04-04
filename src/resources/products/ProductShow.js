@@ -9,6 +9,7 @@ export const ProductShow = (props) => {
 				<TextField source="description" />
 				<TextField source="amount" />
 				<DateField source="created_at" />
+				<DateField source="updated_at" />
 			</SimpleFormView>
 		</Show>
 	);

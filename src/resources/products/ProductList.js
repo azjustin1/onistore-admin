@@ -5,12 +5,16 @@ import {
 	Datagrid,
 	TextField,
 	DateField,
+	ShowButton,
 	EditButton,
 	DeleteButton,
+	Filter,
 } from "react-admin";
 
+import { ProductFilter } from "./ProductFilter";
+
 export const ProductList = (props) => (
-	<List {...props}>
+	<List filters={<ProductFilter />} {...props}>
 		<Datagrid rowClick="edit">
 			<TextField source="id" />
 			<TextField source="name" />
@@ -18,6 +22,7 @@ export const ProductList = (props) => (
 			<TextField source="amount" />
 			<DateField source="created_at" />
 			<DateField source="updated_at" />
+			<ShowButton basePath="products" />
 			<EditButton basePath="products" />
 			<DeleteButton basePath="products" />
 		</Datagrid>
