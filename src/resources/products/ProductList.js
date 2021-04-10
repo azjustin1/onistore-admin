@@ -8,7 +8,7 @@ import {
 	ShowButton,
 	EditButton,
 	DeleteButton,
-	Filter,
+	NumberField,
 } from "react-admin";
 
 import { ProductFilter } from "./ProductFilter";
@@ -18,8 +18,9 @@ export const ProductList = (props) => (
 		<Datagrid rowClick="edit">
 			<TextField source="id" />
 			<TextField source="name" />
-			<TextField source="description" />
-			<TextField source="amount" />
+			<TextField source="quantity" />
+			<NumberField source="price" />
+			<NumberField source="fake_price" />
 			<DateField source="created_at" />
 			<DateField source="updated_at" />
 			<ShowButton basePath="products" />

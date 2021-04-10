@@ -1,12 +1,4 @@
-import {
-	DateInput,
-	Edit,
-	NumberInput,
-	SimpleForm,
-	TextInput,
-	SearchInput,
-	Filter,
-} from "react-admin";
+import { Filter, SearchInput, TextInput } from "react-admin";
 
 export const ProductFilter = (props) => (
 	<Filter {...props}>

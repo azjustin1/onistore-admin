@@ -1,5 +1,3 @@
-import inMemoryJWT from "./inMemoryJWT";
-
 let END_POINT = "http://localhost:8000/api";
 
 const authProvider = {

@@ -1,24 +1,15 @@
-import {
-	DateInput,
-	Edit,
-	NumberInput,
-	SimpleForm,
-	TextInput,
-	Create,
-} from "react-admin";
 import RichTextInput from "ra-input-rich-text";
+import { Create, NumberInput, SimpleForm, TextInput } from "react-admin";
 
 export const ProductCreate = (props) => {
 	return (
 		<Create {...props}>
 			<SimpleForm>
-				<SimpleForm>
-					<TextInput source="name" />
-					<NumberInput source="amount" />
-					<DateInput source="created_at" />
-					<DateInput source="updated_at" />
-					<RichTextInput source="description" />
-				</SimpleForm>
+				<TextInput source="name" />
+				<NumberInput source="quantity" />
+				<NumberInput source="price" />
+				<NumberInput source="fake_price" />
+				<RichTextInput source="description" />
 			</SimpleForm>
 		</Create>
 	);

@@ -34,8 +34,8 @@ export default {
 					.sort(dynamicSort(field, order)) // This will call the dynamic sort function at the end of the file
 					.filter((e) => {
 						return (
-							e.name == params.filter.q ||
-							e.description == params.filter.description
+							e.name === params.filter.q ||
+							e.description === params.filter.description
 						);
 					}),
 				total: parseInt(headers.get("X-Total-Count").split("/").pop(), 10),

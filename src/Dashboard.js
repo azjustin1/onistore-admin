@@ -1,23 +1,16 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
-import "./Dashboard.css";
 import {
-	AreaChart,
 	Area,
+	AreaChart,
+	Bar,
+	BarChart,
+	CartesianGrid,
+	ResponsiveContainer,
+	Tooltip,
 	XAxis,
 	YAxis,
-	CartesianGrid,
-	Tooltip,
-	ResponsiveContainer,
-	BarChart,
-	Bar,
 } from "recharts";
-
+import "./Dashboard.css";
 import { data } from "./data";
 
 function Dashboard() {
