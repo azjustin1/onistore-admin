@@ -9,25 +9,43 @@ import { ProductEdit } from "./resources/products/ProductEdit";
 import { ProductFilter } from "./resources/products/ProductFilter";
 import { ProductList } from "./resources/products/ProductList";
 import { ProductShow } from "./resources/products/ProductShow";
+import { CategoryList } from "./resources/categories/CategoryList";
+import { CategoryCreate } from "./resources/categories/CategoryCreate";
+import { CategoryEdit } from "./resources/categories/CategoryEdit";
+import { CategoryShow } from "./resources/categories/CategoryShow";
+import { UserList } from "./resources/users/UserList";
+import { UserEdit } from "./resources/users/UserEdit";
+import { UserShow } from "./resources/users/UserShow";
+import { OrderList } from "./resources/orders/OrderList";
+import { OrderShow } from "./resources/orders/OrderShow";
 
 const App = () => {
-	return (
-		<Admin
-			dashboard={Dashboard}
-			dataProvider={dataProvider}
-			authProvider={authProvider}>
-			<Resource
-				name="products"
-				filter={ProductFilter}
-				list={ProductList}
-				show={ProductShow}
-				create={ProductCreate}
-				edit={ProductEdit}
-				icon={StorageIcon}
-			/>
-			<Resource name="categories" list={ListGuesser} />
-		</Admin>
-	);
+  return (
+    <Admin
+      dashboard={Dashboard}
+      dataProvider={dataProvider}
+      authProvider={authProvider}
+    >
+      <Resource
+        name="products"
+        filter={ProductFilter}
+        list={ProductList}
+        show={ProductShow}
+        create={ProductCreate}
+        edit={ProductEdit}
+        icon={StorageIcon}
+      />
+      <Resource
+        name="categories"
+        list={CategoryList}
+        create={CategoryCreate}
+        show={CategoryShow}
+        edit={CategoryEdit}
+      />
+      <Resource name="users" list={UserList} show={UserShow} edit={UserEdit} />
+      <Resource name="orders" list={OrderList} show={OrderShow} />
+    </Admin>
+  );
 };
 
 export default App;
