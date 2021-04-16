@@ -18,6 +18,7 @@ import { UserEdit } from "./resources/users/UserEdit";
 import { UserShow } from "./resources/users/UserShow";
 import { OrderList } from "./resources/orders/OrderList";
 import { OrderShow } from "./resources/orders/OrderShow";
+import { ImageList } from "./resources/images/ImageList";
 
 const App = () => {
   return (
@@ -44,6 +45,7 @@ const App = () => {
       />
       <Resource name="users" list={UserList} show={UserShow} edit={UserEdit} />
       <Resource name="orders" list={OrderList} show={OrderShow} />
+      <Resource name="images" list={ImageList} />
     </Admin>
   );
 };

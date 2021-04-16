@@ -1,18 +1,41 @@
 import * as React from "react";
-import { Datagrid, List, TextField, DateField } from "react-admin";
+import {
+  Datagrid,
+  List,
+  TextField,
+  DateField,
+  ShowButton,
+  ArrayField,
+  SingleFieldList,
+  Toolbar,
+  SaveButton,
+  NumberField,
+} from "react-admin";
+
+const UserEditToolbar = (props) => (
+  <Toolbar {...props}>
+    <SaveButton />
+  </Toolbar>
+);
 
 export const OrderList = (props) => (
-  <List {...props}>
-    <Datagrid rowClick="edit">
+  <List bulkActionButtons={false} {...props}>
+    <Datagrid rowClick="edit" toolbar={<UserEditToolbar />}>
       <TextField source="id" />
-      <TextField source="user_id" />
+      <TextField source="user.username" label="User" />
       <TextField source="name" />
       <TextField source="email" />
       <TextField source="phone" />
       <TextField source="address" />
       <TextField source="note" />
+      <NumberField source="total" />
       <DateField source="created_at" />
-      <DateField source="updated_at" />
+      <ArrayField source="product">
+        <Datagrid>
+          <TextField source="name" label="Bought" />
+        </Datagrid>
+      </ArrayField>
+      <ShowButton basePath="orders" />
     </Datagrid>
   </List>
 );

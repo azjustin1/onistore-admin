@@ -11,6 +11,9 @@ import {
   NumberField,
   SingleFieldList,
   ChipField,
+  ImageField,
+  ArrayField,
+  UrlField,
 } from "react-admin";
 
 import { ProductFilter } from "./ProductFilter";
@@ -23,17 +26,16 @@ export const ProductList = (props) => (
       <TextField source="quantity" />
       <NumberField source="price" />
       <NumberField source="fake_price" />
-      <ReferenceManyField
-        label="Categoreis"
-        reference="category"
-        target="product_id"
-      >
+      <ArrayField source="category">
         <SingleFieldList>
           <ChipField source="name" />
         </SingleFieldList>
-      </ReferenceManyField>
-      {/* <DateField source="created_at" />
-      <DateField source="updated_at" /> */}
+      </ArrayField>
+      <ArrayField source="image">
+        <SingleFieldList>
+          <ImageField source="url" />
+        </SingleFieldList>
+      </ArrayField>
       <ShowButton basePath="products" />
       <EditButton basePath="products" />
       <DeleteButton basePath="products" />

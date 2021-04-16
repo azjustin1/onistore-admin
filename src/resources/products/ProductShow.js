@@ -3,8 +3,11 @@ import {
   TextField,
   DateField,
   SimpleFormView,
-  ReferenceManyField,
+  ArrayField,
+  ImageField,
   SingleFieldList,
+  ChipField,
+  Datagrid,
 } from "react-admin";
 
 export const ProductShow = (props) => {
@@ -13,17 +16,34 @@ export const ProductShow = (props) => {
       <SimpleFormView>
         <TextField source="id" />
         <TextField source="name" />
+        <ArrayField source="category">
+          <SingleFieldList>
+            <ChipField source="name" />
+          </SingleFieldList>
+        </ArrayField>
         <TextField source="description" />
         <TextField source="quantity" />
         <TextField source="price" />
         <TextField source="fake_price" />
         <DateField source="created_at" />
         <DateField source="updated_at" />
-        <ReferenceManyField reference="image" target="id">
+        <ArrayField source="image">
           <SingleFieldList>
-            <TextField source="url" />
+            <ImageField source="url" />
           </SingleFieldList>
-        </ReferenceManyField>
+        </ArrayField>
+        <ArrayField source="comment">
+          <Datagrid>
+            <TextField source="text" />
+            <TextField source="user_id" />
+          </Datagrid>
+        </ArrayField>
+        <ArrayField source="rating">
+          <Datagrid>
+            <TextField source="rate" />
+            <TextField source="user_id" />
+          </Datagrid>
+        </ArrayField>
       </SimpleFormView>
     </Show>
   );
